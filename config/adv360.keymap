@@ -12,7 +12,7 @@
 
         hml: homerow_mods_lt {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
+            label = "HOMEROW_MODS_LT";
             #binding-cells = <2>;
             tapping-term-ms = <280>;
             flavor = "balanced";
@@ -26,7 +26,7 @@
 
         hmr: homerow_mods_rt {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
+            label = "HOMEROW_MODS_RT";
             #binding-cells = <2>;
             tapping-term-ms = <280>;
             flavor = "balanced";
@@ -37,6 +37,17 @@
             quick-tap-ms = <175>;
             hold-trigger-on-release;
         };
+
+        skq: sticky_key_quick_release {
+            compatible = "zmk,behavior-sticky-key";
+            label = "sticky_key_quick_release";
+            bindings = <&kp>;
+            #binding-cells = <1>;
+            quick-release;
+            ignore-modifiers;
+            release-after-ms = <1000>;
+            lazy;
+        };
     };
 
     keymap {
@@ -45,11 +56,11 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp EQUAL                 &kp N1             &kp N2               &kp N3           &kp N4               &kp N5  &tog 1                                                                                      &mo 3                      &kp N6  &kp N7                &kp N8            &kp N9                &kp N0                      &kp MINUS
-&kp TAB                   &kp Q              &kp W                &kp E            &kp R                &kp T   &sk LS(LA(LEFT_CONTROL))                                                                    &sk LS(LA(LEFT_CONTROL))   &kp Y   &kp U                 &kp I             &kp O                 &kp P                       &kp BSLH
-&hml LS(LEFT_ALT) ESCAPE  &hml LEFT_SHIFT A  &hml LEFT_CONTROL S  &hml LEFT_ALT D  &hml LEFT_COMMAND F  &kp G   &sk LS(LA(LC(LEFT_GUI)))  &mo 1             &kp LEFT_CONTROL      &kp RCTRL      &mo 1      &sk RS(RA(RC(RIGHT_GUI)))  &kp H   &hmr RIGHT_COMMAND J  &hmr RIGHT_ALT K  &hmr RIGHT_CONTROL L  &hmr RIGHT_SHIFT SEMICOLON  &hmr SQT RS(RIGHT_ALT)
-&sk LSHFT                 &kp Z              &kp X                &kp C            &kp V                &kp B                                               &kp LEFT_ALT          &kp RIGHT_ALT                                        &kp N   &kp M                 &kp COMMA         &kp DOT               &kp FSLH                    &sk RSHFT
-&mo 2                     &kp GRAVE          &kp EQUAL            &kp LEFT         &kp RIGHT                    &kp BSPC                  &kp LEFT_COMMAND  &mo 3                 &mo 3          &kp ENTER  &kp SPACE                          &kp UP                &kp DOWN          &kp LBKT              &kp RBKT                    &mo 2
+&kp EQUAL                 &kp N1             &kp N2               &kp N3           &kp N4               &kp N5  &tog 1                                                                                   &mo 3                      &kp N6  &kp N7                &kp N8            &kp N9                &kp N0                      &kp MINUS
+&kp TAB                   &kp Q              &kp W                &kp E            &kp R                &kp T   &sk LS(LA(LEFT_CONTROL))                                                                 &sk LS(LA(LEFT_CONTROL))   &kp Y   &kp U                 &kp I             &kp O                 &kp P                       &kp BSLH
+&hml LS(LEFT_ALT) ESCAPE  &hml LEFT_SHIFT A  &hml LEFT_CONTROL S  &hml LEFT_ALT D  &hml LEFT_COMMAND F  &kp G   &sk LS(LA(LC(LEFT_GUI)))  &mo 1          &kp LEFT_CONTROL      &kp RCTRL      &mo 1      &sk RS(RA(RC(RIGHT_GUI)))  &kp H   &hmr RIGHT_COMMAND J  &hmr RIGHT_ALT K  &hmr RIGHT_CONTROL L  &hmr RIGHT_SHIFT SEMICOLON  &hmr SQT RS(RIGHT_ALT)
+&skq LSHFT                &kp Z              &kp X                &kp C            &kp V                &kp B                                            &kp LEFT_ALT          &kp RIGHT_ALT                                        &kp N   &kp M                 &kp COMMA         &kp DOT               &kp FSLH                    &skq RSHFT
+&mo 2                     &kp GRAVE          &kp EQUAL            &kp LEFT         &kp RIGHT                    &kp BSPC                  &skq LEFT_GUI  &mo 3                 &mo 3          &kp ENTER  &kp SPACE                          &kp UP                &kp DOWN          &kp LBKT              &kp RBKT                    &mo 2
             >;
         };
 
